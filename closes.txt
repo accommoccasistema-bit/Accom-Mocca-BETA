@@ -1,0 +1,127 @@
+318:          </div>
+319:        </div>
+326:      </div>
+337:                 <div className="px-2 py-0.5 bg-blue-50 text-blue-600 text-[8px] font-black uppercase rounded-full">Activo</div>
+339:            </div>
+354:              </div>
+355:            </div>
+356:          </div>
+368:                   </div>
+369:                </div>
+373:                </div>
+377:                </div>
+381:                </div>
+382:             </div>
+383:          </div>
+384:        </div>
+391:           </div>
+395:           </div>
+399:           </div>
+403:           </div>
+404:        </div>
+412:              </div>
+415:              </div>
+416:           </div>
+442:                        <div className="absolute top-4 left-4 right-4 h-1 border-t border-slate-200 opacity-50"></div>
+443:                        <div className="absolute bottom-4 left-4 right-4 h-1 border-b border-slate-200 opacity-50"></div>
+444:                        <div className="absolute left-4 top-4 bottom-4 w-1 border-l border-slate-200 opacity-50"></div>
+445:                        <div className="absolute right-4 top-4 bottom-4 w-1 border-r border-slate-200 opacity-50"></div>
+468:                              </div>
+472:                              </div>
+473:                           </div>
+480:                                 <div className="h-1.5 w-32 bg-blue-600 mt-3"></div>
+481:                              </div>
+485:                                 </div>
+487:                              </div>
+488:                           </div>
+489:                        </div>
+493:                           <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600/10 rounded-full -mr-16 -mt-16 blur-3xl"></div>
+500:                              </div>
+501:                           </div>
+502:                           <div className="h-12 w-[1px] bg-white/10"></div>
+508:                              </div>
+509:                           </div>
+510:                        </div>
+523:                                    </div>
+525:                                       <div className="h-full bg-blue-600 rounded-full" style={{ width: `${calculations.rendimentoIndustrial}%` }}></div>
+526:                                    </div>
+527:                                 </div>
+532:                                    </div>
+536:                                    </div>
+537:                                 </div>
+538:                              </div>
+539:                           </div>
+544:                              </div>
+552:                                 </div>
+556:                                 </div>
+560:                                 </div>
+561:                              </div>
+562:                           </div>
+563:                        </div>
+568:                              <div>Especificação</div>
+569:                              <div className="text-center">Quantidade</div>
+570:                              <div className="text-center">Peso Bruto</div>
+571:                              <div className="text-right">Rend. Lote</div>
+572:                           </div>
+580:                                   <div className="text-[11px] font-black text-slate-800 uppercase">{row.name}</div>
+581:                                   <div className="text-[11px] font-bold text-center text-slate-400">{row.bags} {row.bags !== '---' ? 'BAGS' : ''}</div>
+582:                                   <div className="text-[11px] font-black text-center text-slate-700">{row.weight.toLocaleString('pt-BR', { maximumFractionDigits: 0 })} KG</div>
+583:                                   <div className={`text-[11px] font-black text-right ${row.color}`}>{row.pct.toFixed(2)}%</div>
+584:                                </div>
+586:                           </div>
+587:                        </div>
+592:                                 <div className="w-1 h-12 bg-blue-600"></div>
+598:                                 </div>
+599:                              </div>
+600:                           </div>
+604:                           </div>
+605:                        </div>
+606:                      </div>
+611:                        <div className="absolute top-4 left-4 right-4 h-1 border-t border-slate-200 opacity-50"></div>
+612:                        <div className="absolute bottom-4 left-4 right-4 h-1 border-b border-slate-200 opacity-50"></div>
+613:                        <div className="absolute left-4 top-4 bottom-4 w-1 border-l border-slate-200 opacity-50"></div>
+614:                        <div className="absolute right-4 top-4 bottom-4 w-1 border-r border-slate-200 opacity-50"></div>
+619:                             <div className="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center text-white font-black text-xl">02</div>
+623:                             </div>
+624:                           </div>
+627:                           </div>
+628:                        </div>
+642:                                    </div>
+646:                                    </div>
+647:                                 </div>
+648:                              </div>
+655:                                    </div>
+659:                                    </div>
+660:                                 </div>
+661:                              </div>
+662:                           </div>
+663:                        </div>
+675:                                    </div>
+678:                                 </div>
+682:                                    </div>
+685:                                 </div>
+689:                                    </div>
+692:                                 </div>
+693:                              </div>
+694:                           </div>
+695:                        </div>
+699:                              <div className="w-10 h-[2px] bg-slate-200"></div>
+701:                              <div className="w-10 h-[2px] bg-slate-200"></div>
+702:                           </div>
+706:                        </div>
+712:                                 <div className="w-48 h-[1px] bg-slate-400 mb-2"></div>
+715:                              </div>
+716:                           </div>
+726:                                 <div className="bg-blue-600 text-white px-3 py-1 rounded text-[10px] font-black uppercase tracking-widest shadow-lg">QUALIDADE ASSEGURADA</div>
+727:                              </div>
+729:                           </div>
+730:                        </div>
+731:                      </div>
+732:                    </div>
+733:                  </div>
+734:              </div>
+735:            </div>
+736:         </div>
+737:      </div>
+738:    </div>
+739:    </div>

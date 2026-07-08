@@ -1,0 +1,6 @@
+{
+  "appId": "com.accommocca.beta",
+  "appName": "ACCOM MOCCA",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}

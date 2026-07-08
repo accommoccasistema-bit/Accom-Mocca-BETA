@@ -1,0 +1,340 @@
+{
+  "entities": {
+    "Extraction": {
+      "title": "Extraction",
+      "description": "Dados de extração de moagem",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "flour": { "type": "number" },
+        "bran": { "type": "number" },
+        "yieldPercentage": { "type": "number" },
+        "date": { "type": "string", "format": "date-time" },
+        "flourCommon": { "type": "number" },
+        "flourSpecial": { "type": "number" },
+        "flourWhole": { "type": "number" },
+        "flourGlue": { "type": "number" }
+      },
+      "required": ["userId", "flour", "bran", "yieldPercentage", "date"]
+    },
+    "Analysis": {
+      "title": "Analysis",
+      "description": "Análises laboratoriais",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "date": { "type": "string", "format": "date-time" },
+        "colors": {
+          "type": "object",
+          "properties": {
+            "special": { "type": "string" },
+            "common": { "type": "string" },
+            "whole": { "type": "string" },
+            "glue": { "type": "string" }
+          }
+        },
+        "humidities": {
+          "type": "object",
+          "properties": {
+            "special": { "type": "number" },
+            "common": { "type": "number" },
+            "whole": { "type": "number" },
+            "glue": { "type": "number" }
+          }
+        }
+      },
+      "required": ["userId", "date", "colors", "humidities"]
+    },
+    "Stock": {
+      "title": "Stock",
+      "description": "Estoque de farinhas e farelo",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "common": { "type": "number" },
+        "special": { "type": "number" },
+        "whole": { "type": "number" },
+        "glue": { "type": "number" },
+        "branStock": { "type": "number" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "common", "special", "whole", "glue", "branStock"]
+    },
+    "Load": {
+      "title": "Load",
+      "description": "Cargas de expedição",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "loadId": { "type": "string" },
+        "type": { "type": "string", "enum": ["E", "C", "I", "CL"] },
+        "quantity": { "type": "number" },
+        "currentQty": { "type": "number" },
+        "client": { "type": "string" },
+        "weight": { "type": "number" },
+        "step": { "type": "number" },
+        "status": { "type": "string", "enum": ["ATIVO", "FINALIZADO"] },
+        "batchId": { "type": "string" },
+        "entityId": { "type": "string" },
+        "batchName": { "type": "string" },
+        "driverName": { "type": "string" },
+        "vehiclePlate": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "loadId", "type", "quantity", "currentQty", "step", "status"]
+    },
+    "Coloration": {
+      "title": "Coloration",
+      "description": "Configuração de coloração das bicas",
+      "type": "object",
+      "properties": {
+        "bicas": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "color": { "type": "number" },
+              "vazao": { "type": "number" },
+              "destination": { "type": "string", "enum": ["C", "E", "CL", null] }
+            }
+          }
+        },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "MillingBox": {
+      "title": "MillingBox",
+      "description": "Estado das caixas de moagem",
+      "type": "object",
+      "properties": {
+        "id": { "type": "number" },
+        "isRunning": { "type": "boolean" },
+        "isPaused": { "type": "boolean" },
+        "isFinished": { "type": "boolean" },
+        "startTime": { "type": "number" },
+        "elapsedTime": { "type": "number" },
+        "details": {
+          "type": "object",
+          "properties": {
+            "date": { "type": "string" },
+            "startHour": { "type": "string" },
+            "flowRate": { "type": "number" },
+            "wheatType": { "type": "string" },
+            "scale": { "type": "number" },
+            "water": { "type": "number" },
+            "molhagemStart": { "type": "string" },
+            "totalKg": { "type": "number" },
+            "operator": { "type": "string" }
+          }
+        },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "Moisture": {
+      "title": "Moisture",
+      "description": "Registros de umidade",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "wheat": { "type": "number" },
+        "flour": { "type": "number" },
+        "bran": { "type": "number" },
+        "date": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "wheat", "flour", "bran", "date"]
+    },
+    "CalculatorConfig": {
+      "title": "CalculatorConfig",
+      "description": "Estado da calculadora de extração",
+      "type": "object",
+      "properties": {
+        "flourCommon": { "type": "string" },
+        "flourSpecial": { "type": "string" },
+        "flourWhole": { "type": "string" },
+        "flourGlue": { "type": "string" },
+        "branSample": { "type": "string" },
+        "step": { "type": "string" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "WheatEntry": {
+      "title": "WheatEntry",
+      "description": "Entradas de trigo na moega",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "ticket": { "type": "string" },
+        "driver": { "type": "string" },
+        "plate": { "type": "string" },
+        "description": { "type": "string" },
+        "entity": { "type": "string" },
+        "product": { "type": "string" },
+        "batchId": { "type": "string" },
+        "entityId": { "type": "string" },
+        "entryWeight": { "type": "number" },
+        "exitWeight": { "type": "number" },
+        "liquidWeight": { "type": "number" },
+        "moisture": { "type": "number" },
+        "impurity": { "type": "number" },
+        "triguilho": { "type": "number" },
+        "avariado": { "type": "number" },
+        "ph": { "type": "number" },
+        "discount": { "type": "number" },
+        "finalWeight": { "type": "number" },
+        "date": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "ticket", "liquidWeight", "date"]
+    },
+    "SubproductLoad": {
+      "title": "SubproductLoad",
+      "description": "Cargas de subprodutos",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "loadId": { "type": "string" },
+        "type": { "type": "string", "enum": ["FARELO", "RESIDUO", "OUTRO"] },
+        "otherName": { "type": "string" },
+        "quantity": { "type": "number" },
+        "status": { "type": "string", "enum": ["ATIVO", "FINALIZADO"] },
+        "batchId": { "type": "string" },
+        "entityId": { "type": "string" },
+        "driverName": { "type": "string" },
+        "vehiclePlate": { "type": "string" },
+        "client": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "loadId", "type", "quantity", "status"]
+    },
+    "Entity": {
+      "title": "Entity",
+      "description": "Cadastro de Clientes e Fornecedores",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "companyName": { "type": "string" },
+        "cnpj": { "type": "string" },
+        "phone": { "type": "string" },
+        "city": { "type": "string" },
+        "state": { "type": "string" },
+        "address": { "type": "string" },
+        "distanceKm": { "type": "number" },
+        "type": { "type": "string", "enum": ["FORNECEDOR", "CLIENTE", "AMBOS"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "name", "city", "state", "type", "createdAt"]
+    },
+    "AppConfig": {
+      "title": "AppConfig",
+      "description": "Configuração global do aplicativo",
+      "type": "object",
+      "properties": {
+        "currentView": { "type": "string" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "Batch": {
+      "title": "Batch",
+      "description": "Lotes de produção",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "targetWheat": { "type": "number" },
+        "currentWheat": { "type": "number" },
+        "targetFlour": { "type": "number" },
+        "currentFlour": { "type": "number" },
+        "targetSubproduct": { "type": "number" },
+        "currentSubproduct": { "type": "number" },
+        "status": { "type": "string", "enum": ["OPEN", "CLOSED"] },
+        "millingCapacity": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "closedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "name", "targetWheat", "status", "createdAt"]
+    },
+    "Driver": {
+      "title": "Driver",
+      "description": "Cadastro de motoristas",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "plate": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "name", "plate"]
+    },
+    "Weighing": {
+      "title": "Weighing",
+      "description": "Registros de pesagem da balança",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "ticketNumber": { "type": "number" },
+        "plate": { "type": "string" },
+        "driver": { "type": "string" },
+        "product": { "type": "string" },
+        "entity": { "type": "string" },
+        "observations": { "type": "string" },
+        "taraWeight": { "type": "number" },
+        "brutoWeight": { "type": "number" },
+        "liquidWeight": { "type": "number" },
+        "entryDate": { "type": "string", "format": "date-time" },
+        "exitDate": { "type": "string", "format": "date-time" },
+        "status": { "type": "string", "enum": ["EM_ANDAMENTO", "FINALIZADA"] },
+        "photoUrl": { "type": "string" }
+      },
+      "required": ["userId", "ticketNumber", "plate", "status", "entryDate"]
+    },
+    "LiveScale": {
+      "title": "LiveScale",
+      "description": "Peso em tempo real vindo da nuvem",
+      "type": "object",
+      "properties": {
+        "weight": { "type": "number" },
+        "stable": { "type": "boolean" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["weight", "stable", "updatedAt"]
+    },
+    "MoccaDocument": {
+      "title": "MoccaDocument",
+      "description": "Documentos do Moinho revisados pelo sistema ACCOM",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "revisionDate": { "type": "string" },
+        "fileName": { "type": "string" },
+        "fileSize": { "type": "number" },
+        "fileData": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "name", "revisionDate", "fileName", "fileSize", "fileData", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/extractions": { "schema": "Extraction", "description": "Histórico de extrações" },
+    "/analyses": { "schema": "Analysis", "description": "Histórico de análises" },
+    "/stock": { "schema": "Stock", "description": "Estado atual do estoque" },
+    "/loads": { "schema": "Load", "description": "Cargas de expedição" },
+    "/coloration": { "schema": "Coloration", "description": "Configuração de coloração" },
+    "/milling": { "schema": "MillingBox", "description": "Estado das caixas de moagem" },
+    "/moisture": { "schema": "Moisture", "description": "Histórico de umidade" },
+    "/calculator_config": { "schema": "CalculatorConfig", "description": "Estado da calculadora" },
+    "/wheat_entries": { "schema": "WheatEntry", "description": "Entradas de trigo" },
+    "/subproduct_loads": { "schema": "SubproductLoad", "description": "Cargas de subprodutos" },
+    "/app_config": { "schema": "AppConfig", "description": "Configuração do app" },
+    "/batches": { "schema": "Batch", "description": "Lotes de produção" },
+    "/drivers": { "schema": "Driver", "description": "Cadastro de motoristas" },
+    "/weighings": { "schema": "Weighing", "description": "Registros de pesagem" },
+    "/entities": { "schema": "Entity", "description": "Clientes e fornecedores" },
+    "/live_scale": { "schema": "LiveScale", "description": "Peso em tempo real" },
+    "/mocca_documents": { "schema": "MoccaDocument", "description": "Documentos e revisão de processos do moinho" }
+  }
+}

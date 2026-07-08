@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">ACCOM MOCCA</string>
+    <string name="title_activity_main">ACCOM MOCCA</string>
+    <string name="package_name">com.accommocca.beta</string>
+    <string name="custom_url_scheme">com.accommocca.beta</string>
+</resources>

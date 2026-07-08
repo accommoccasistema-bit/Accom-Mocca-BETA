@@ -1,0 +1,10 @@
+{
+  "name": "Remix: Remix: Remix: MOCCA - Gestão Industrial v1",
+  "description": "Sistema moderno de gestão e controle operacional para moinhos de trigo, com foco em mobilidade e precisão industrial.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

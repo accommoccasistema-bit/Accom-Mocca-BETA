@@ -1,0 +1,37 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Default Allow for development to fix immediate permission errors
+    match /{document=**} {
+      allow read, write: if true;
+    }
+
+    // Explicit collection matches (redundant but helpful for clarity)
+    match /entities/{docId} {
+      allow read, write: if true;
+    }
+
+    match /users/{userId} {
+      allow read, write: if true;
+    }
+
+    match /extractions/{docId} { allow read, write: if true; }
+    match /analyses/{docId} { allow read, write: if true; }
+    match /stock/{docId} { allow read, write: if true; }
+    match /loads/{docId} { allow read, write: if true; }
+    match /coloration/{docId} { allow read, write: if true; }
+    match /milling/{docId} { allow read, write: if true; }
+    match /moisture/{docId} { allow read, write: if true; }
+    match /calculator_config/{docId} { allow read, write: if true; }
+    match /wheat_entries/{docId} { allow read, write: if true; }
+    match /subproduct_loads/{docId} { allow read, write: if true; }
+    match /app_config/{docId} { allow read, write: if true; }
+    match /batches/{docId} { allow read, write: if true; }
+    match /drivers/{docId} { allow read, write: if true; }
+    match /weighings/{docId} { allow read, write: if true; }
+    match /live_scale/{docId} { allow read, write: if true; }
+    match /production_entries/{docId} { allow read, write: if true; }
+    match /mocca_documents/{docId} { allow read, write: if true; }
+  }
+}

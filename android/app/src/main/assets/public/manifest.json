@@ -1,0 +1,26 @@
+{
+  "short_name": "AccomMocca",
+  "name": "ACCOM MOCCA BETA",
+  "description": "Sistema Accom Mocca para gestão e controle operacional de moinhos.",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/1046/1046441.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/1046/1046441.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": ".",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#2563eb",
+  "background_color": "#e2e8f0",
+  "orientation": "portrait",
+  "categories": ["productivity", "utilities"]
+}

@@ -228,12 +228,6 @@ const MinutaModal: React.FC<{ isOpen: boolean; onClose: () => void; load: Load |
                         <span className="text-xs font-black leading-tight text-slate-900">{load.invoice}</span>
                       </div>
                     )}
-                    {load.invoice && (
-                      <div className="flex flex-col border-b-2 border-slate-900 text-right">
-                        <span className="text-[8px] font-black text-slate-400 uppercase tracking-widest leading-none mb-1">NOTA FISCAL</span>
-                        <span className="text-xs font-black leading-tight text-slate-900">{load.invoice}</span>
-                      </div>
-                    )}
                   </div>
                 </div>
               </div>
@@ -628,13 +622,16 @@ export const FlourStockControl: React.FC<FlourStockControlProps> = ({ onBack }) 
   const handleFileChange = async (loadId: string, file: File | null) => {
     if (!file) return;
     
-    if (file.size > 300 * 1024) {
-      showToast("Arquivo muito grande. Máximo 300KB.", "error");
+    if (file.size > 600 * 1024) {
+      showToast("Arquivo muito grande. Máximo 600KB.", "error");
       return;
     }
 
-    if (file.type !== 'application/pdf') {
-      showToast("Apenas arquivos PDF são permitidos.", "error");
+    const isPdf = file.type === 'application/pdf';
+    const isImg = file.type.startsWith('image/');
+
+    if (!isPdf && !isImg) {
+      showToast("Apenas PDF ou imagens são permitidos.", "error");
       return;
     }
 
@@ -1382,22 +1379,32 @@ const LoadCard: React.FC<{
     if (!load.attachment) return;
     const printWindow = window.open('', '_blank');
     if (printWindow) {
+      const isImg = load.attachment.data.startsWith('data:image/') || 
+                    /\.(png|jpe?g|gif|webp)$/i.test(load.attachment.name);
+      
+      const content = isImg 
+        ? `<img src="${load.attachment.data}">`
+        : `<embed src="${load.attachment.data}" type="application/pdf">`;
+
       printWindow.document.write(`
         <html>
           <head>
             <title>Imprimir Anexo</title>
             <style>
-              body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; }
-              embed { width: 100%; height: 100%; }
+              body, html { margin: 0; padding: 0; height: 100%; width: 100%; display: flex; align-items: center; justify-content: center; background: #fff; overflow: auto; }
+              embed { width: 100%; height: 100%; border: none; }
+              img { max-width: 100%; max-height: 100%; object-fit: contain; }
             </style>
           </head>
           <body>
-            <embed src="${load.attachment.data}" type="application/pdf">
+            ${content}
           </body>
           <script>
-            setTimeout(() => {
-              window.print();
-            }, 500);
+            window.onload = function() {
+              setTimeout(() => {
+                window.print();
+              }, 500);
+            };
           </script>
         </html>
       `);
@@ -1621,7 +1628,7 @@ const LoadCard: React.FC<{
                         {load.attachment ? (isExpired ? 'Anexo Expirado (72h)' : load.attachment.name) : 'Anexar análise alveográfica'}
                       </p>
                       <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">
-                        {load.attachment ? (isExpired ? 'O arquivo não está mais disponível' : `${(load.attachment.size / 1024).toFixed(1)} KB • Expira em 72h`) : 'Máximo 300KB'}
+                        {load.attachment ? (isExpired ? 'O arquivo não está mais disponível' : `${(load.attachment.size / 1024).toFixed(1)} KB • Expira em 72h`) : 'PDF ou Imagem • Máximo 600KB'}
                       </p>
                     </div>
                   </div>
@@ -1660,7 +1667,7 @@ const LoadCard: React.FC<{
                         <FileUp size={18} />
                         <input 
                           type="file" 
-                          accept="application/pdf" 
+                          accept="application/pdf,image/*" 
                           className="hidden" 
                           onChange={(e) => onFileChange(load.id, e.target.files?.[0] || null)}
                         />

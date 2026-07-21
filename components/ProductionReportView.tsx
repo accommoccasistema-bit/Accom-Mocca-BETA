@@ -802,7 +802,7 @@ export const ProductionReportView: React.FC<ProductionReportViewProps> = ({ onBa
 
                         {/* Summary Grid */}
                         <div className="grid grid-cols-3 gap-4 mb-4">
-                           <div className="bg-slate-50/10 rounded-none p-4 relative overflow-hidden flex justify-center items-center border-2 border-slate-300 flex-col gap-1.5 text-center shadow-sm">
+                           <div className="bg-slate-50/10 rounded-xl p-4 relative overflow-hidden flex justify-center items-center border border-slate-200 flex-col gap-1.5 text-center shadow-sm">
                               <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-amber-500 z-20"></div>
                               <div className="absolute -left-4 -bottom-4 opacity-5 transform -rotate-12 translate-y-2">
                               
@@ -818,7 +818,7 @@ export const ProductionReportView: React.FC<ProductionReportViewProps> = ({ onBa
                               </div>
                            </div>
                            
-                           <div className="bg-slate-50/10 rounded-none p-4 relative overflow-hidden flex justify-center items-center border-2 border-slate-300 flex-col gap-1.5 text-center shadow-sm">
+                           <div className="bg-slate-50/10 rounded-xl p-4 relative overflow-hidden flex justify-center items-center border border-slate-200 flex-col gap-1.5 text-center shadow-sm">
                               <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-[#5C3A21] z-20"></div>
                               <div className="absolute -left-4 -bottom-4 opacity-5 transform -rotate-12 translate-y-2">
                               
@@ -834,7 +834,7 @@ export const ProductionReportView: React.FC<ProductionReportViewProps> = ({ onBa
                               </div>
                            </div>
 
-                           <div className="bg-slate-50/10 rounded-none p-4 relative overflow-hidden flex justify-center items-center border-2 border-slate-300 flex-col gap-1.5 text-center shadow-sm">
+                           <div className="bg-slate-50/10 rounded-xl p-4 relative overflow-hidden flex justify-center items-center border border-slate-200 flex-col gap-1.5 text-center shadow-sm">
                               <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-sky-600 z-20"></div>
                               <div className="absolute -right-4 -bottom-4 opacity-5 transform rotate-12 translate-y-2">
                               
@@ -1113,6 +1113,55 @@ export const ProductionReportView: React.FC<ProductionReportViewProps> = ({ onBa
                               </div>
                            )}
                         </div>
+
+                        {/* Consolidated Batch Yield Summary */}
+                        <div className="bg-slate-50/50 rounded-xl border border-slate-200 p-4 mb-4">
+                           <div className="flex justify-between items-center mb-2.5">
+                              <h4 className="text-xs font-black text-slate-800 uppercase tracking-wider">Rendimento Industrial Consolidado</h4>
+                              <span className="text-[10px] font-black text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full uppercase">Trigo Processado = 100%</span>
+                           </div>
+                           
+                           {/* Segmented Progress Bar */}
+                           <div className="w-full h-4 bg-slate-200 rounded-full overflow-hidden flex mb-4 shadow-inner">
+                              <div 
+                                 className="bg-blue-600 h-full transition-all duration-500 relative"
+                                 style={{ width: `${Math.max(0, Math.min(100, calculations.rendimentoFarinha))}%` }}
+                                 title={`Farinha: ${calculations.rendimentoFarinha.toFixed(2)}%`}
+                              />
+                              <div 
+                                 className="bg-[#5C3A21] h-full transition-all duration-500 relative"
+                                 style={{ width: `${Math.max(0, Math.min(100, calculations.pctFareloTrigo))}%` }}
+                                 title={`Subproduto/Farelo: ${calculations.pctFareloTrigo.toFixed(2)}%`}
+                              />
+                              <div 
+                                 className="bg-slate-400 h-full transition-all duration-500 relative"
+                                 style={{ width: `${Math.max(0, Math.min(100, calculations.quebraPct))}%` }}
+                                 title={`Perda/Quebra: ${calculations.quebraPct.toFixed(2)}%`}
+                              />
+                           </div>
+
+                           {/* Simplified & Clean Statistics Section */}
+                           <div className="grid grid-cols-12 gap-4 items-center">
+                              {/* Left Side: Huge Flour Yield */}
+                              <div className="col-span-6 flex flex-col justify-center border-r border-slate-200 pr-6">
+                                 <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">Rendimento Farinha</span>
+                                 <span className="text-4xl font-black text-blue-600 leading-none">{calculations.rendimentoFarinha.toFixed(2)}%</span>
+                              </div>
+
+                              {/* Right Side: Bran and Loss */}
+                              <div className="col-span-6 grid grid-cols-2 gap-4 pl-2">
+                                 <div className="flex flex-col">
+                                    <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">Rendimento Farelo</span>
+                                    <span className="text-2xl font-black text-[#5C3A21] leading-none">{calculations.pctFareloTrigo.toFixed(2)}%</span>
+                                 </div>
+                                 <div className="flex flex-col">
+                                    <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">Perda / Quebra</span>
+                                    <span className="text-2xl font-black text-slate-500 leading-none">{Math.max(0, calculations.quebraPct).toFixed(2)}%</span>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+
                          <div className="mt-auto border-t border-slate-200 pt-3">
 
 

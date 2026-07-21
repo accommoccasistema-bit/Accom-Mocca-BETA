@@ -225,7 +225,9 @@ const MinutaModal: React.FC<{ isOpen: boolean; onClose: () => void; load: Load |
                     {load.invoice && (
                       <div className="flex flex-col border-b-2 border-slate-900 text-right">
                         <span className="text-[8px] font-black text-slate-400 uppercase tracking-widest leading-none mb-1">NOTA FISCAL</span>
-                        <span className="text-xs font-black leading-tight text-slate-900">{load.invoice}</span>
+                        <span className="text-xs font-black leading-tight text-slate-900">
+                          {load.invoice.toUpperCase().startsWith("Nº") ? load.invoice : `Nº ${load.invoice}`}
+                        </span>
                       </div>
                     )}
                   </div>
@@ -1924,7 +1926,12 @@ const LoadCard: React.FC<{
                      type="text" 
                      disabled={isProcessing} placeholder="DIGITE O Nº DA NOTA FISCAL" 
                      value={invoiceInput[load.id] || load.invoice || ""}
-                     onChange={e => setInvoiceInput({...invoiceInput, [load.id]: e.target.value})}
+                     onChange={e => {
+                       let val = e.target.value;
+                       const cleanVal = val.replace(/^N[ºo]?\.?\s*/i, "");
+                       const formatted = cleanVal.trim() !== "" ? `Nº ${cleanVal}` : "";
+                       setInvoiceInput({...invoiceInput, [load.id]: formatted});
+                     }}
                      className="w-full bg-white border-2 border-blue-100 p-5 rounded-[1.5rem] font-black text-center text-lg outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-50/50 transition-all disabled:opacity-50 shadow-sm"
                    />
                 </div>
